@@ -8,8 +8,9 @@ jobs:
 
     steps:
       - uses: actions/checkout@v1
-      - name: build
+      - name: package
         run: |
+          npm ci
           npm run package
           ls -lt *.vsix
       - uses: actions/upload-artifact@v2
