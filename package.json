@@ -1,0 +1,35 @@
+{
+  "name": "vscode-tree-extension",
+  "displayName": "Lauguage support for Tree files",
+  "description": "Better higlighting for tree outuput",
+  "version": "0.0.1",
+  "publisher": "ctc/tree",
+  "engines": {
+    "vscode": "^1.28.0"
+  },
+  "categories": [
+    "Programming Languages"
+  ],
+  "contributes": {
+    "languages": [
+      {
+        "id": "tree",
+        "extensions": [
+          ".tree"
+        ],
+        "aliases": [
+          "tree",
+          "tree-file"
+        ],
+        "configuration": "./language-configuration.json"
+      }
+    ],
+    "grammars": [
+      {
+        "language": "tree",
+        "scopeName": "source.tree",
+        "path": "./syntaxes/tree.tmLanguage.json"
+      }
+    ]
+  }
+}
