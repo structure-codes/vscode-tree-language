@@ -1,0 +1,18 @@
+name: CI
+
+on: [push, pull_request]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v1
+      - name: build
+        run: |
+          npm run package
+          ls -lt *.vsix
+      - uses: actions/upload-artifact@v2
+        with:
+          name: vscode-tree-extension
+          path: '*.vsix'

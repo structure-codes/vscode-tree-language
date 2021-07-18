@@ -2,266 +2,58 @@
   "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
   "name": "tree",
   "scopeName": "source.tree",
-  "fileTypes": [
-    "tree"
-  ],
+  "fileTypes": ["tree"],
   "patterns": [
     {
       "include": "#comments"
     },
     {
-      "include": "#strings"
+      "include": "#keywords"
     },
     {
-      "include": "#keywords"
+      "include": "#variables"
     },
     {
       "include": "#operators"
     },
     {
       "include": "#numbers"
-    },
-    {
-      "include": "#support"
-    },
-    {
-      "include": "#variables"
     }
   ],
   "repository": {
-    "variables": {
-      "patterns": [
-        {
-          "name": "meta.function.declaration.tree",
-          "patterns": [
-            {
-              "match": "\\b(fn)\\s+([A-Z][a-zA-Z0-9]*)\\b",
-              "captures": {
-                "1": {
-                  "name": "storage.type.function.tree"
-                },
-                "2": {
-                  "name": "entity.name.type.tree"
-                }
-              }
-            },
-            {
-              "match": "\\b(fn)\\s+([_a-zA-Z][_a-zA-Z0-9]*)\\b",
-              "captures": {
-                "1": {
-                  "name": "storage.type.function.tree"
-                },
-                "2": {
-                  "name": "entity.name.function.tree"
-                }
-              }
-            },
-            {
-              "begin": "\\b(fn)\\s+@\"",
-              "end": "\"",
-              "name": "entity.name.function.tree",
-              "beginCaptures": {
-                "1": {
-                  "name": "storage.type.function.tree"
-                }
-              },
-              "patterns": [
-                {
-                  "include": "#stringcontent"
-                }
-              ]
-            },
-            {
-              "name": "keyword.default.tree",
-              "match": "\\b(const|var|fn)\\b"
-            }
-          ]
-        },
-        {
-          "name": "meta.function.call.tree",
-          "patterns": [
-            {
-              "match": "([A-Z][a-zA-Z0-9]*)(?=\\s*\\()",
-              "name": "entity.name.type.tree"
-            },
-            {
-              "match": "([_a-zA-Z][_a-zA-Z0-9]*)(?=\\s*\\()",
-              "name": "entity.name.function.tree"
-            }
-          ]
-        },
-        {
-          "name": "meta.variable.tree",
-          "patterns": [
-            {
-              "match": "\\b[_A-Z][_A-Z0-9]+\\b",
-              "name": "variable.constant.tree"
-            },
-            {
-              "match": "\\b[_a-zA-Z][_a-zA-Z0-9]*_t\\b",
-              "name": "entity.name.type.tree"
-            },
-            {
-              "match": "\\b[A-Z][a-zA-Z0-9]*\\b",
-              "name": "entity.name.type.tree"
-            },
-            {
-              "match": "\\b[_a-zA-Z][_a-zA-Z0-9]*\\b",
-              "name": "variable.tree"
-            },
-            {
-              "begin": "@\"",
-              "end": "\"",
-              "name": "variable.tree",
-              "patterns": [
-                {
-                  "include": "#stringcontent"
-                }
-              ]
-            }
-          ]
-        }
-      ]
-    },
     "keywords": {
       "patterns": [
         {
-          "match": "(\\binline\\b)?\\s*\\b(while|for)\\b",
-          "name": "keyword.control.repeat.tree"
+          "begin": "(.*)├──",
+          "end": " ",
+          "name": "keyword.trunk.tree"
         },
         {
-          "name": "keyword.storage.tree",
-          "match": "\\b(extern|packed|export|pub|noalias|inline|comptime|volatile|align|linksection|threadlocal|allowzero|noinline|callconv)\\b"
+          "begin": "(.*)│",
+          "end": " ",
+          "name": "keyword.branch.tree"
         },
         {
-          "name": "keyword.structure.tree",
-          "match": "\\b(struct|enum|union|opaque)\\b"
-        },
-        {
-          "name": "keyword.statement.tree",
-          "match": "\\b(asm|unreachable)\\b"
-        },
-        {
-          "name": "keyword.control.flow.tree",
-          "match": "\\b(break|return|continue|defer|errdefer)\\b"
-        },
-        {
-          "name": "keyword.control.async.tree",
-          "match": "\\b(await|resume|suspend|async|nosuspend)\\b"
-        },
-        {
-          "name": "keyword.control.trycatch.tree",
-          "match": "\\b(try|catch)\\b"
-        },
-        {
-          "name": "keyword.control.conditional.tree",
-          "match": "\\b(if|else|switch|orelse)\\b"
-        },
-        {
-          "name": "keyword.constant.default.tree",
-          "match": "\\b(null|undefined)\\b"
-        },
-        {
-          "name": "keyword.constant.bool.tree",
-          "match": "\\b(true|false)\\b"
-        },
-        {
-          "match": "[\\s\\(\\[\\{](\\.[_a-zA-Z][_a-zA-Z0-9]*)(?!\\s*=[^>])(?![_a-zA-Z0-9])",
-          "captures": {
-            "1": {
-              "name": "variable.other.enummember.tree"
-            }
-          }
-        },
-        {
-          "match": "[\\s\\(\\[\\{](\\.@\"[^\"]*\")(?!\\s*=[^>])",
-            "captures": {
-              "1": {
-                "name": "variable.other.enummember.tree"
-              }
-            }
-        },
-        {
-          "name": "keyword.default.tree",
-          "match": "\\b(usingnamespace|test|and|or)\\b"
-        },
-        {
-          "name": "meta.error-set.tree",
-          "patterns": [
-            {
-              "begin": "\\b(error)\\b\\s*{",
-              "end": "}",
-              "beginCaptures": {
-                "1": {
-                  "name": "keyword.type.tree"
-                }
-              },
-              "patterns": [
-                {
-                  "match": "\\b[_a-zA-Z][_a-zA-Z0-9]*\\b",
-                  "name": "variable.constant.error.tree"
-                },
-                {
-                  "include": "$self"
-                }
-              ]
-            },
-            {
-              "begin": "\\b(error)\\b",
-              "end": "\\b([_a-zA-Z][_a-zA-Z0-9]*)\\b",
-              "beginCaptures": {
-                "1": {
-                  "name": "keyword.type.tree"
-                }
-              },
-              "endCaptures": {
-                "1": {
-                  "name": "variable.constant.error.tree"
-                }
-              },
-              "patterns": [
-                {
-                  "include": "$self"
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "name": "keyword.type.tree",
-          "match": "\\b(bool|void|noreturn|type|error|anyerror|anyframe|anytype)\\b"
-        },
-        {
-          "name": "keyword.type.integer.tree",
-          "match": "\\b(f16|f32|f64|f128|u\\d+|i\\d+|isize|usize|comptime_int|comptime_float)\\b"
-        },
-        {
-          "name": "keyword.type.c.tree",
-          "match": "\\b(c_short|c_ushort|c_int|c_uint|c_long|c_ulong|c_longlong|c_ulonglong|c_longdouble|c_void)\\b"
+          "begin": "(.*)└──",
+          "end": " ",
+          "name": "keyword.endseg.tree"
         }
       ]
     },
-    "operators": {
+    "variables": {
       "patterns": [
         {
-          "name": "keyword.operator.c-pointer.tree",
-          "match": "\\[*c\\]"
-        },
+          "match": "[0-9a-zA-Z]+/",
+          "name": "variable.folder.tree"
+        }
+      ]
+    },
+    "numbers": {
+      "patterns": [
         {
-          "name": "keyword.operator.comparison.tree",
-          "match": "(\\b(and|or)\\b)|(==|!=)"
-        },
-        {
-          "name": "keyword.operator.arithmetic.tree",
-          "match": "(-%?|\\+%?|\\*%?|/|%)=?"
-        },
-        {
-          "name": "keyword.operator.bitwise.tree",
-          "match": "(<<%?|>>|!|&|\\^|\\|)=?"
-        },
-        {
-          "name": "keyword.operator.special.tree",
-          "match": "(==|\\+\\+|\\*\\*|->)"
+          "begin": "[0-9a-zA-Z]+",
+          "end": "\n",
+          "name": "constant.numeric.float.tree"
         }
       ]
     },
@@ -270,98 +62,7 @@
         {
           "name": "comment.line.documentation.tree",
           "begin": "#",
-          "end": "$",
-          "patterns": [
-            {
-              "include": "#commentContents"
-            }
-          ]
-        },
-        {
-          "name": "comment.line.double-slash.tree",
-          "begin": "//",
-          "end": "$",
-          "patterns": [
-            {
-              "include": "#commentContents"
-            }
-          ]
-        }
-      ]
-    },
-    "commentContents": {
-      "patterns": [
-        {
-          "match": "\\b(TODO|FIXME|XXX|NOTE)\\b:?",
-          "name": "keyword.todo.tree"
-        }
-      ]
-    },
-    "strings": {
-      "patterns": [
-        {
-          "name": "string.quoted.double.tree",
-          "begin": "\"",
-          "end": "\"",
-          "patterns": [
-            {
-              "include": "#stringcontent"
-            }
-          ]
-        },
-        {
-          "name": "string.multiline.tree",
-          "begin": "\\\\\\\\",
           "end": "$"
-        },
-        {
-          "name": "string.quoted.single.tree",
-          "match": "'([^'\\\\]|\\\\(x\\h{2}|[0-2][0-7]{,2}|3[0-6][0-7]?|37[0-7]?|[4-7][0-7]?|.))'"
-        }
-      ]
-    },
-    "stringcontent": {
-      "patterns": [
-        {
-          "name": "constant.character.escape.tree",
-          "match": "\\\\([nrt'\"\\\\]|(x[0-9a-fA-F]{2})|(u\\{[0-9a-fA-F]+\\}))"
-        },
-        {
-          "name": "invalid.illegal.unrecognized-string-escape.tree",
-          "match": "\\\\."
-        }
-      ]
-    },
-    "numbers": {
-      "patterns": [
-        {
-          "name": "constant.numeric.float.tree",
-          "match": "\\b[0-9][0-9_]*(\\.[0-9][0-9_]*)?([eE][+-]?[0-9_]+)?\\b"
-        },
-        {
-          "name": "constant.numeric.decimal.tree",
-          "match": "\\b[0-9][0-9_]*\\b"
-        },
-        {
-          "name": "constant.numeric.hexadecimal.tree",
-          "match": "\\b0x[a-fA-F0-9_]+\\b"
-        },
-        {
-          "name": "constant.numeric.octal.tree",
-          "match": "\\b0o[0-7_]+\\b"
-        },
-        {
-          "name": "constant.numeric.binary.tree",
-          "match": "\\b0b[01_]+\\b"
-        }
-      ]
-    },
-    "support": {
-      "patterns": [
-        {
-          "comment": "Built-in functions",
-          "name": "support.function.builtin.tree",
-          "match": "@[_a-zA-Z][_a-zA-Z0-9]*"
         }
       ]
     }

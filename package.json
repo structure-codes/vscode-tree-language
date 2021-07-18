@@ -3,13 +3,17 @@
   "displayName": "Lauguage support for Tree files",
   "description": "Better higlighting for tree outuput",
   "version": "0.0.1",
-  "publisher": "ctc/tree",
+  "publisher": "CTC",
   "engines": {
     "vscode": "^1.28.0"
   },
   "categories": [
     "Programming Languages"
   ],
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:Hacksore/vscode-tree-language.git"
+  },
   "contributes": {
     "languages": [
       {
@@ -31,5 +35,11 @@
         "path": "./syntaxes/tree.tmLanguage.json"
       }
     ]
+  },
+  "scripts": {
+    "package": "vsce package"
+  },
+  "devDependencies": {
+    "vsce": "^1.95.1"
   }
 }
