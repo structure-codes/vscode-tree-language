@@ -1,8 +1,8 @@
 {
   "name": "vscode-tree-extension",
-  "displayName": "Lauguage support for Tree files",
-  "description": "Better higlighting for tree outuput",
-  "version": "0.0.1",
+  "displayName": "Tree",
+  "description": "Lauguage support for Tree files",
+  "version": "0.0.2",
   "publisher": "CTC",
   "engines": {
     "vscode": "^1.28.0"
