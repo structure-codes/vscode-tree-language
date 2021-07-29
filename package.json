@@ -2,8 +2,9 @@
   "name": "vscode-tree-extension",
   "displayName": "Tree",
   "description": "Lauguage support for Tree files",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "publisher": "CTC",
+  "icon": "images/icon.png",
   "engines": {
     "vscode": "^1.28.0"
   },
@@ -12,7 +13,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git@github.com:Hacksore/vscode-tree-language.git"
+    "url": "https://github.com/structure-codes/vscode-tree-language.git"
   },
   "contributes": {
     "languages": [
