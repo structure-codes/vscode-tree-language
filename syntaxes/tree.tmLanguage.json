@@ -2,58 +2,50 @@
   "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
   "name": "tree",
   "scopeName": "source.tree",
-  "fileTypes": ["tree"],
+  "fileTypes": [
+    "tree"
+  ],
   "patterns": [
     {
       "include": "#comments"
     },
     {
-      "include": "#keywords"
-    },
-    {
       "include": "#variables"
     },
     {
-      "include": "#operators"
-    },
-    {
-      "include": "#numbers"
+      "include": "#keywords"
     }
   ],
   "repository": {
     "keywords": {
       "patterns": [
         {
-          "begin": "(.*)├──",
-          "end": " ",
-          "name": "keyword.trunk.tree"
+          "begin": "[0-9a-zA-Z]+",
+          "end": "\n",
+          "name": "keyword.file.tree"
         },
-        {
-          "begin": "(.*)│",
-          "end": " ",
-          "name": "keyword.branch.tree"
-        },
-        {
-          "begin": "(.*)└──",
-          "end": " ",
-          "name": "keyword.endseg.tree"
-        }
-      ]
-    },
-    "variables": {
-      "patterns": [
         {
           "match": "[0-9a-zA-Z]+/",
           "name": "variable.folder.tree"
         }
       ]
     },
-    "numbers": {
+    "variables": {
       "patterns": [
+        { 
+          "begin": "(.*)├──",
+          "end": " ",
+          "name": "variable.trunk.tree"
+        },
         {
-          "begin": "[0-9a-zA-Z]+",
-          "end": "\n",
-          "name": "constant.numeric.float.tree"
+          "begin": "(.*)│",
+          "end": " ",
+          "name": "variable.branch.tree"
+        },
+        {
+          "begin": "(.*)└──",
+          "end": " ",
+          "name": "variable.endseg.tree"
         }
       ]
     },
@@ -62,6 +54,11 @@
         {
           "name": "comment.line.documentation.tree",
           "begin": "#",
+          "end": "$"
+        },
+        {
+          "name": "comment.line.documentation.tree",
+          "begin": "//",
           "end": "$"
         }
       ]
