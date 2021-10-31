@@ -6,7 +6,6 @@ import * as util from "util";
 
 const readFile = util.promisify(fs.readFile);
 
-console.log(process.env);
 const { DEBUG = true } = process.env;
 
 export async function activate(context: vscode.ExtensionContext) {
@@ -20,13 +19,11 @@ export async function activate(context: vscode.ExtensionContext) {
   const provider = vscode.languages.registerFoldingRangeProvider({ language: "tree" }, foldingProvider);
   context.subscriptions.push(provider);
 
-  // open new file with tree lang file when VSCODE_DEBUG_MODE is set
-  const fileUrl = path.join(context.extensionPath, "example.tree");
-  const exampleFile = await readFile(fileUrl.toString());
-
-  console.log("debug", DEBUG);
+  
   if (DEBUG) {
-    vscode.window.showInformationMessage("Starting in debug so showign you a tree");
+    // open new file with tree lang file when VSCODE_DEBUG_MODE is set
+    const fileUrl = path.join(context.extensionPath, "example.tree");
+    const exampleFile = await readFile(fileUrl.toString());
     const document = await vscode.workspace.openTextDocument({
       language: "tree",
       content: exampleFile.toString(),
