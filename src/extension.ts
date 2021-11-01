@@ -6,7 +6,7 @@ import * as util from "util";
 
 const readFile = util.promisify(fs.readFile);
 
-const { DEBUG = true } = process.env;
+const { DEBUG } = process.env;
 
 export async function activate(context: vscode.ExtensionContext) {
   const disposable = vscode.commands.registerCommand("extension.tree.reload", () => {
