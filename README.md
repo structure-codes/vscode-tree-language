@@ -11,11 +11,16 @@ This VSCode Extension adds syntax highlighting support for `.tree` files - This 
 - Syntax highlighting 💅
 - Folding 🤏
 
-### How do i generarte a tree?
+### Demo
+![2021-11-01_10-45-11 (1)](https://user-images.githubusercontent.com/996134/139699698-4f1baec9-4ea8-422d-9a22-0a7a1f23f901.gif)
 
-The best way would be to install the `tree` command on your platoform and run something like `tree -I node_modules`
 
-That would yeild something like this that you can then use the tree language in VSCode.
+
+### How do I generate a tree?
+
+The best way for now would be to install the `tree` command on your platform. These differ platform to platform so beware that you might run into issues.
+
+**NOTE: We plan on building our own CLI that will have its own implementation of tree to unifiy the landscape**
 
 ```
 ├── functions
