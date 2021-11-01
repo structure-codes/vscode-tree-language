@@ -1,8 +1,13 @@
+import { nanoid } from "nanoid";
+
+// Use a unique index so that it won't conflict with any file names
+export const INDEX_NAME = nanoid();
+
 const getNumberOfTabs = (line: string) => {
   return (line.match(/\t/g) || []).length;
 };
 
-const treeStringToJson = (tree: string) => {
+export const treeStringToJson = (tree: string) => {
   const elements = new Set();
   let prevLine = "";
   const path: Array<string> = [];
@@ -38,12 +43,9 @@ const treeStringToJson = (tree: string) => {
       (branch: any, filename: string) => branch[filename],
       elements
     );
-      
-    current[filename] = { __index: index  };
+    current[filename] = { [INDEX_NAME]: index  };
     prevLine = line;
     path.push(filename);
   });
   return elements;
 };
-
-export default treeStringToJson;
