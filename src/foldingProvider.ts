@@ -37,6 +37,7 @@ class FoldingProvider implements vscode.FoldingRangeProvider {
     };
 
     const tree = treeStringToJson(document.getText());
+    if (!tree) return ranges;
     Object.values(tree).forEach((branch) => {
       getRanges(branch);
     });

@@ -7,13 +7,34 @@ const getNumberOfTabs = (line: string) => {
   return (line.match(/\t/g) || []).length;
 };
 
+const getTabChar = (tree: string) => {
+  const treeLines = tree.split(/\r|\r\n|\n/);
+  const childRegex = /│([\t\f ]+)├──|([\t\f ]+)├──|│([\t\f ]+)└──|([\t\f ]+)└──/;
+  const firstChild = treeLines.find(line => line.match(childRegex));
+  // since regex consist of 4 options, match looks like ["│\t└──", null, null, "\t", null]
+  // first element is the whole string, next 4 elements are either null or the captured group
+  const match = firstChild?.match(childRegex);
+  // remove the first element from the list
+  match?.shift();
+  // find the non-null element, if one exists
+  return match?.find(i => i);
+};
+
 export const treeStringToJson = (tree: string) => {
   const elements = new Set();
   let prevLine = "";
-  const path: Array<string> = [];
+  const path: string[] = [];
+  
+  const tabChar = getTabChar(tree);
+  if (!tabChar) {
+    console.error("Unable to parse tab character");
+    return;
+  }
+  
+  const treeFormatted = tree.replace(new RegExp(tabChar, "g"), '\t');
 
   // look for line breaks that works on all platforms
-  tree.split(/\r|\r\n|\n/).forEach((line, index) => {
+  treeFormatted.split(/\r|\r\n|\n/).forEach((line, index) => {
     const prevPrefix = prevLine.split(" ")[0];
     const prevNumTabs = getNumberOfTabs(prevPrefix);
     const prefix = line.split(" ")[0];
