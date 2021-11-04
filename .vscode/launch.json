@@ -15,7 +15,7 @@
       "preLaunchTask": "npm: build",
       "env": {
         "DEBUG": "true",
-      }
+      },
     }
   ]
 }

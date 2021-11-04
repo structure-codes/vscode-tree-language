@@ -8,16 +8,12 @@ const getNumberOfTabs = (line: string) => {
 };
 
 const getTabChar = (tree: string) => {
+  // Search for the first child in the tree and extract the tab character from there
   const treeLines = tree.split(/\r|\r\n|\n/);
-  const childRegex = /│([\t\f ]+)├──|([\t\f ]+)├──|│([\t\f ]+)└──|([\t\f ]+)└──/;
+  const childRegex = /│?(.+)(├──|└──)/;
   const firstChild = treeLines.find(line => line.match(childRegex));
-  // since regex consist of 4 options, match looks like ["│\t└──", null, null, "\t", null]
-  // first element is the whole string, next 4 elements are either null or the captured group
   const match = firstChild?.match(childRegex);
-  // remove the first element from the list
-  match?.shift();
-  // find the non-null element, if one exists
-  return match?.find(i => i);
+  return match?.[1];
 };
 
 export const treeStringToJson = (tree: string) => {
@@ -31,6 +27,7 @@ export const treeStringToJson = (tree: string) => {
     return;
   }
   
+  // replace whatever tabChar is used with \t in memory to make parsing easier
   const treeFormatted = tree.replace(new RegExp(tabChar, "g"), '\t');
 
   // look for line breaks that works on all platforms
