@@ -1,10 +1,7 @@
 import * as vscode from "vscode";
 import FoldingProvider from "./foldingProvider";
 import * as path from "path";
-import * as fs from "fs";
-import * as util from "util";
 
-const readFile = util.promisify(fs.readFile);
 const { VSCODE_DEBUG = false } = process.env;
 
 export async function activate(context: vscode.ExtensionContext) {
@@ -15,11 +12,7 @@ export async function activate(context: vscode.ExtensionContext) {
   // open new file with tree lang file when VSCODE_DEBUG is set
   if (VSCODE_DEBUG) {
     const fileUrl = path.join(context.extensionPath, "example.tree");
-    const exampleFile = await readFile(fileUrl.toString());
-    const document = await vscode.workspace.openTextDocument({
-      language: "tree",
-      content: exampleFile.toString(),
-    });
+    const document = await vscode.workspace.openTextDocument(fileUrl);
     vscode.window.showTextDocument(document);
   }
 }
