@@ -38,7 +38,7 @@ The best way for now would be to install the `tree` command on your platform. Th
 │	│	├── landing
 │	│	├── router
 │	│	└── shared
-│	├── constants
+│	└── constants
 └── static
 	└── images
 		├── screenshots
