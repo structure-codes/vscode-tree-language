@@ -3,11 +3,8 @@ import { INDEX_NAME, treeStringToJson } from "./tree";
 
 class FoldingProvider implements vscode.FoldingRangeProvider {
   onDidChangeFoldingRanges?: vscode.Event<void> | undefined;
-  provideFoldingRanges(
-    document: vscode.TextDocument,
-    context: vscode.FoldingContext,
-    token: vscode.CancellationToken
-  ): vscode.ProviderResult<vscode.FoldingRange[]> {
+
+  provideFoldingRanges(document: vscode.TextDocument): vscode.ProviderResult<vscode.FoldingRange[]> {
     const getLastNode = (branch: Record<string, any>) => {
       const indexes: Array<number> = [];
       // Get the last line number that is a child of the given branch
@@ -37,6 +34,7 @@ class FoldingProvider implements vscode.FoldingRangeProvider {
     };
 
     const tree = treeStringToJson(document.getText());
+    if (!tree) return ranges;
     Object.values(tree).forEach((branch) => {
       getRanges(branch);
     });
