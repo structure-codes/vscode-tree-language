@@ -1,31 +1,78 @@
-/* eslint-disable */
+/* eslint-disable @typescript-eslint/no-var-requires */
+"use strict";
 
-const path = require("path");
+// eslint-disable-next-line no-undef
 const webpack = require("webpack");
+// eslint-disable-next-line no-undef
+const path = require("path");
+// eslint-disable-next-line no-undef
+const extensionPackage = require("./package.json");
 
-const isProduction = process.env.NODE_ENV === "production";
+/**@type {import('webpack').Configuration}*/
+const config = {
+  target: "node",
+  entry: "./src/extension.ts",
+  output: {
+    // eslint-disable-next-line no-undef
+    path: path.resolve(__dirname, "dist"),
+    filename: "extension.js",
+    libraryTarget: "commonjs2",
+    /* cspell: disable-next-line */
+    devtoolModuleFilenameTemplate: "../[resource-path]",
+  },
+  plugins: [
+    new webpack.EnvironmentPlugin({
+      EXTENSION_NAME: `${extensionPackage.publisher}.${extensionPackage.name}`,
+      EXTENSION_VERSION: extensionPackage.version,
+    }),
+  ],
+  /* cspell: disable-next-line */
+  devtool: "source-map",
+  externals: {
+    vscode: "commonjs vscode",
+    prettier: "commonjs prettier",
+  },
+  resolve: {
+    extensions: [".ts", ".js"],
+  },
+  module: {
+    rules: [
+      {
+        test: /\.ts$/,
+        exclude: /node_modules/,
+        use: [
+          {
+            loader: "ts-loader",
+          },
+        ],
+      },    
+    ],
+  },
+};
 
-/** @type WebpackConfig */
-const webExtensionConfig = {
-  mode: "none", // this leaves the source code as close as possible to the original (when packaging we set this to 'production')
-  target: "webworker", // extensions run in a webworker context
+const browserConfig = /** @type WebpackConfig */ {
+  mode: "none",
+  target: "webworker", // web extensions run in a webworker context
   entry: {
-    extension: "./src/extension.ts", // source of the web extension main file
+    "web-extension": "./src/extension.ts",
   },
   output: {
     filename: "[name].js",
-    path: path.join(__dirname, "./dist/web"),
+    // eslint-disable-next-line no-undef
+    path: path.join(__dirname, "./dist"),
     libraryTarget: "commonjs",
   },
   resolve: {
-    mainFields: ["browser", "module", "main"], // look for `browser` entry point in imported node modules
-    extensions: [".ts", ".js"], // support ts-files and js-files
+    mainFields: ["module", "main"],
+    extensions: [".ts", ".js", ".mjs"], // support ts-files and js-files
     alias: {
-      // provides alternate implementation for node module and source files
+      // replace the node based resolver with the browser version
+      "./ModuleResolver": "./BrowserModuleResolver",
     },
     fallback: {
-      path: require.resolve('path-browserify'),
-      assert: require.resolve("assert"),
+      // eslint-disable-next-line no-undef
+      path: require.resolve("path-browserify"),
+      os: false,
     },
   },
   module: {
@@ -41,23 +88,24 @@ const webExtensionConfig = {
       },
     ],
   },
-  plugins: [
-    new webpack.ProvidePlugin({
-      process: "process/browser", // provide a shim for the global `process` variable
-    }),
-    new webpack.DefinePlugin({
-      // hack in the debug variable
-      "process.env.VSCODE_DEBUG": true,
-      VSCODE_DEBUG: true,
-    }),
-  ],
   externals: {
     vscode: "commonjs vscode", // ignored because it doesn't exist
   },
   performance: {
     hints: false,
   },
-  devtool: "nosources-source-map", // create a source map that points to the original source file
+  devtool: "source-map",
+  plugins: [
+    new webpack.ProvidePlugin({
+      process: "process/browser",
+      babel: "prettier/esm/parser-babel.mjs",
+    }),
+    new webpack.DefinePlugin({
+      "process.env": JSON.stringify({}),
+      "process.env.BROWSER_ENV": JSON.stringify("true"),
+    }),
+  ],
 };
 
-module.exports = [webExtensionConfig];
+// eslint-disable-next-line no-undef
+module.exports = [config, browserConfig];
