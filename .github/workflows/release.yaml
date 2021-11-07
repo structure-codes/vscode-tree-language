@@ -1,8 +1,8 @@
 on:
   workflow_dispatch:
-  create:
-    tags:
-      - "*v"
+  release:
+    types:
+      - created
 
 name: Deploy Extension
 jobs:
