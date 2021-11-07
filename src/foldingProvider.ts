@@ -28,11 +28,10 @@ class FoldingProvider implements vscode.FoldingRangeProvider {
       if (children.length == 1) return;
       const startIndex = branch[INDEX_NAME];
       const endIndex = getLastNode(branch);
-      console.log(`branch is: ${JSON.stringify(branch)}`);
       ranges.push(new vscode.FoldingRange(startIndex, endIndex, vscode.FoldingRangeKind.Region));
       children.forEach((child) => {
         // The child is either the branch's line index or an Object with more children to parse
-        if (typeof child === 'number') return;
+        if (typeof child === "number") return;
         getRanges(child);
       });
     };
