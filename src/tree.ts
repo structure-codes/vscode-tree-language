@@ -47,6 +47,8 @@ export const treeStringToJson = (text: string) => {
 
   // look for line breaks that works on all platforms
   treeFormatted.split(/\r|\r\n|\n/).forEach((line, index) => {
+    const isTreeFormat = line.match(/^(\t+)?(│|├──|└──|\t)+ .+/);
+    if (!isTreeFormat) return;
     const prevPrefix = prevLine.split(" ")[0];
     const prevNumTabs = getNumberOfTabs(prevPrefix);
     const prefix = line.split(" ")[0];
