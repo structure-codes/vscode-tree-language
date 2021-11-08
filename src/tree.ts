@@ -40,7 +40,7 @@ export const treeStringToJson = (text: string) => {
   const tabChar = getTabChar(text);
   if (!tabChar) {
     console.error("Unable to parse tab character");
-    return;
+    return {};
   }
   
   // replace whatever tabChar is used with \t in memory to make parsing easier
@@ -49,7 +49,7 @@ export const treeStringToJson = (text: string) => {
   // look for line breaks that works on all platforms
   treeFormatted.split(EOL_MATCH).forEach((line, index) => {
     const isTreeFormat = line.match(/^(\t+)?(│|├──|└──|\t)+ .+/);
-    if (!isTreeFormat) return;
+    if (!isTreeFormat) return {};
     const prevPrefix = prevLine.split(" ")[0];
     const prevNumTabs = getNumberOfTabs(prevPrefix);
     const prefix = line.split(" ")[0];
