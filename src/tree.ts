@@ -1,4 +1,5 @@
 import { nanoid } from "nanoid";
+import { TreeType } from "./types/treeType";
 
 // Use a unique index so that it won't conflict with any file names
 export const INDEX_NAME = nanoid();
@@ -6,7 +7,7 @@ const EOL_MATCH = /\r?\n/;
 
 /**
  * Scans a line of text for tab chars
- * @param line 
+ * @param line
  * @returns Number of tabs in the line
  */
 const getNumberOfTabs = (line: string): number => {
@@ -15,14 +16,14 @@ const getNumberOfTabs = (line: string): number => {
 
 /**
  * Get's the tab char based on the first child tree item
- * @param text 
+ * @param text
  * @returns A character that represents the tab char
  */
 const getTabChar = (text: string): string | null => {
   // Search for the first child in the tree and extract the tab character from there
   const treeLines = text.split(EOL_MATCH);
   const childRegex = /│?(.+)(├──|└──)/;
-  const firstChild = treeLines.find(line => line.match(childRegex));
+  const firstChild = treeLines.find((line) => line.match(childRegex));
   const match = firstChild?.match(childRegex);
   return match?.[1] || null;
 };
@@ -36,15 +37,15 @@ export const treeStringToJson = (text: string) => {
   const elements = new Set();
   let prevLine = "";
   const path: string[] = [];
-  
+
   const tabChar = getTabChar(text);
   if (!tabChar) {
     console.error("Unable to parse tab character");
     return {};
   }
-  
+
   // replace whatever tabChar is used with \t in memory to make parsing easier
-  const treeFormatted = text.replace(new RegExp(tabChar, "g"), '\t');
+  const treeFormatted = text.replace(new RegExp(tabChar, "g"), "\t");
 
   // look for line breaks that works on all platforms
   treeFormatted.split(EOL_MATCH).forEach((line, index) => {
@@ -75,11 +76,8 @@ export const treeStringToJson = (text: string) => {
         iter2 = elements["src/"]["Home/"]
         curr = {}
     */
-    const current: any = path.reduce(
-      (branch: any, filename: string) => branch[filename],
-      elements
-    );
-    current[filename] = { [INDEX_NAME]: index  };
+    const current: TreeType = path.reduce((branch: TreeType, filename: string) => branch[filename], elements);
+    current[filename] = { [INDEX_NAME]: index };
     prevLine = line;
     path.push(filename);
   });

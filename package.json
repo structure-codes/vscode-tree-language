@@ -43,8 +43,7 @@
     ]
   },
   "scripts": {
-    "vscode:prepublish": "npm run build",
-    "lint": "eslint . --ext .ts,.tsx",
+    "lint": "eslint ./src --ext .ts,.tsx",
     "build": "tsc",
     "dev": "tsc -watch -p ./",
     "package": "vsce package",

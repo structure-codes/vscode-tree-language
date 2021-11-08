@@ -1,8 +1,7 @@
 on:
   workflow_dispatch:
-  create:
-    tags:
-      - "*v"
+  release:
+    types: [released]
 
 name: Deploy Extension
 jobs:
@@ -14,6 +13,7 @@ jobs:
         with:
           node-version: 14
       - run: npm ci
+      - run: npm run build
       - run: npm run package
       - name: Publish to Visual Studio Marketplace
         uses: HaaLeo/publish-vscode-extension@v0
