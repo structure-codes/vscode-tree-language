@@ -1,10 +1,10 @@
-name: Deploy Extension
+name: Insiders Deploy
 
 on:
   workflow_dispatch:
-  release:
-    types: [released]
-
+  push:
+    branches:
+      - develop
 
 jobs:
   cd:
@@ -14,9 +14,14 @@ jobs:
       - uses: actions/setup-node@v1
         with:
           node-version: 14
-      - run: npm ci
-      - run: npm run build
-      - run: npm run package
+      - name: Run insders patch
+        run: npm run patch-insiders
+      - name: Install
+        run: npm ci
+      - name: Build
+        run: npm run build
+      - name: Package
+        run: npm run package
       - name: Publish to Visual Studio Marketplace
         uses: HaaLeo/publish-vscode-extension@v0
         with:

@@ -42,6 +42,22 @@
       "env": {
         "VSCODE_DEBUG": "true"
       }
+    },
+    {
+      "name": "Run Web Extension",
+      "type": "pwa-extensionHost",
+      "debugWebWorkerHost": true,
+      "request": "launch",
+      "args": [
+        "--disable-extensions",
+        "--extensionDevelopmentPath=${workspaceFolder}",
+        "--extensionDevelopmentKind=web"
+      ],
+      "outFiles": ["${workspaceFolder}/dist/**/*.js"],
+      "preLaunchTask": "npm: dev",
+      "env": {
+        "VSCODE_DEBUG": "true"
+      }
     }
   ]
 }
