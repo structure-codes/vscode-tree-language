@@ -30,7 +30,6 @@ const config = {
   devtool: "source-map",
   externals: {
     vscode: "commonjs vscode",
-    prettier: "commonjs prettier",
   },
   resolve: {
     extensions: [".ts", ".js"],
@@ -67,7 +66,7 @@ const browserConfig = /** @type WebpackConfig */ {
     extensions: [".ts", ".js", ".mjs"], // support ts-files and js-files
     alias: {
       // replace the node based resolver with the browser version
-      "./ModuleResolver": "./BrowserModuleResolver",
+      
     },
     fallback: {
       // eslint-disable-next-line no-undef
@@ -98,7 +97,6 @@ const browserConfig = /** @type WebpackConfig */ {
   plugins: [
     new webpack.ProvidePlugin({
       process: "process/browser",
-      babel: "prettier/esm/parser-babel.mjs",
     }),
     new webpack.DefinePlugin({
       "process.env": JSON.stringify({}),
