@@ -5,8 +5,6 @@ import * as path from "path";
 const { VSCODE_DEBUG = false } = process.env;
 
 export async function activate(context: vscode.ExtensionContext) {
-  console.log("vscode-tree-language loaded!");
-
   const foldingProvider = new FoldingProvider();
   const provider = vscode.languages.registerFoldingRangeProvider({ language: "tree" }, foldingProvider);
   context.subscriptions.push(provider);
