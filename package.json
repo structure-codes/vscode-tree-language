@@ -8,8 +8,8 @@
   "engines": {
     "vscode": "^1.28.0"
   },
-  "main": "./dist/extension",
-  "browser": "./dist/web/extension.js",
+  "main": "./dist/extension.js",
+  "browser": "./dist/web-extension.js",
   "activationEvents": [
     "onLanguage:tree",
     "onStartupFinished"

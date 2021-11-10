@@ -44,16 +44,16 @@
       }
     },
     {
-      "name": "Run Tree PWA",
+      "name": "Run Web Extension",
       "type": "pwa-extensionHost",
+      "debugWebWorkerHost": true,
       "request": "launch",
-      "runtimeExecutable": "${execPath}",
       "args": [
-        "--extensionDevelopmentPath=${workspaceFolder}"
+        "--disable-extensions",
+        "--extensionDevelopmentPath=${workspaceFolder}",
+        "--extensionDevelopmentKind=web"
       ],
-      "outFiles": [
-        "${workspaceFolder}/dist/**/*.js"
-      ],
+      "outFiles": ["${workspaceFolder}/dist/**/*.js"],
       "preLaunchTask": "npm: dev",
       "env": {
         "VSCODE_DEBUG": "true"
