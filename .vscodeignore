@@ -1,0 +1,9 @@
+.github
+.vscode
+src
+.gitignore
+jest.config.ts
+package.json
+tsconfig.json
+*.zip
+*.vsix

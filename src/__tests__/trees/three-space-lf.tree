@@ -1,0 +1,50 @@
+##
+###
+###
+├── functions
+├── src
+│   ├── articles
+│   ├── components
+│   │   ├── builder
+│   │   │   ├── center
+│   │   │   ├── left
+│   │   │   │   └── sections
+│   │   │   ├── lists
+│   │   │   └── right
+│   │   │      └── sections
+│   │   ├── dashboard
+│   │   ├── landing
+│   │   ├── router
+│   │   └── shared
+│   ├── constants
+│   ├── contexts
+│   ├── data
+│   ├── hooks
+│   ├── i18n
+│   │   └── locales
+│   ├── modals
+│   │   └── sections
+│   ├── pages
+│   │   ├── app
+│   │   └── r
+│   ├── styles
+│   ├── templates
+│   │   └── blocks
+│   │      ├── Awards
+│   │      ├── BirthDate
+│   │      ├── Certifications
+│   │      ├── Contact
+│   │      ├── Education
+│   │      ├── Heading
+│   │      ├── Hobbies
+│   │      ├── Languages
+│   │      ├── Objective
+│   │      ├── Projects
+│   │      ├── References
+│   │      ├── Skills
+│   │      └── Work
+│   └── utils
+└── static
+   └── images
+      ├── screenshots
+      └── templates

@@ -13,7 +13,7 @@ export async function activate(context: vscode.ExtensionContext) {
 
   // Open example.tree in a new window when running locally for debugging
   if (VSCODE_DEBUG) {
-    const fileUrl = path.join(context.extensionPath, "example.tree");
+    const fileUrl = path.join(context.extensionPath, "src/__tests__/trees/tab-lf.tree");
     const document = await vscode.workspace.openTextDocument(fileUrl);
     vscode.window.showTextDocument(document);
   }

@@ -11,8 +11,9 @@ jobs:
       - name: package
         run: |
           npm ci
+          npm test
+          npm run build
           npm run package
-          ls -lt *.vsix
       - uses: actions/upload-artifact@v2
         with:
           name: vscode-tree-extension
