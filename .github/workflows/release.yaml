@@ -1,9 +1,11 @@
+name: Deploy Extension
+
 on:
   workflow_dispatch:
   release:
     types: [released]
 
-name: Deploy Extension
+
 jobs:
   cd:
     runs-on: ubuntu-latest
