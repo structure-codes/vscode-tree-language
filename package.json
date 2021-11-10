@@ -2,13 +2,14 @@
   "name": "vscode-tree-extension",
   "displayName": "Tree",
   "description": "Lauguage support for Tree files",
-  "version": "0.0.8",
+  "version": "0.0.10",
   "publisher": "CTC",
   "icon": "images/icon.png",
   "engines": {
     "vscode": "^1.28.0"
   },
-  "main": "./out/extension.js",
+  "main": "./dist/extension.js",
+  "browser": "./dist/web-extension.js",
   "activationEvents": [
     "onLanguage:tree",
     "onStartupFinished"
@@ -43,10 +44,12 @@
     ]
   },
   "scripts": {
-    "lint": "eslint ./src --ext .ts,.tsx",
-    "build": "tsc",
-    "dev": "tsc -watch -p ./",
+    "lint": "eslint . --ext .ts,.tsx",
+    "build": "webpack --mode production",
+    "build:dev": "webpack --mode development",
+    "dev": "webpack --watch",
     "package": "vsce package",
+    "patch-insiders": "node scripts/applyInsidersPatch.js",
     "test": "jest"
   },
   "devDependencies": {
@@ -58,12 +61,15 @@
     "@typescript-eslint/parser": "^5.2.0",
     "eslint": "^8.1.0",
     "jest": "^27.3.1",
+    "path-browserify": "^1.0.1",
+    "process": "^0.11.10",
     "ts-jest": "^27.0.7",
+    "ts-loader": "^9.2.6",
     "ts-node": "^10.4.0",
     "typescript": "^4.4.4",
-    "vsce": "^1.95.1"
+    "vsce": "^1.95.1",
+    "webpack": "^5.62.1",
+    "webpack-cli": "^4.9.1"
   },
-  "dependencies": {
-    "nanoid": "^3.1.30"
-  }
+  "dependencies": {}
 }
