@@ -8,11 +8,14 @@ jobs:
 
     steps:
       - uses: actions/checkout@v1
+      - name: install
+        run: npm ci
+      - name: test
+        run: npm test
+      - name: build
+        run: npm run build
       - name: package
-        run: |
-          npm ci
-          npm run package
-          ls -lt *.vsix
+        run: npm run package
       - uses: actions/upload-artifact@v2
         with:
           name: vscode-tree-extension

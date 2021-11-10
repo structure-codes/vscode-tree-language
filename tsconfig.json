@@ -6,13 +6,16 @@
 			"ES2019",
 			"dom"
 		],
-		"outDir": "out",
+		"outDir": "dist",
 		"sourceMap": true,
 		"strict": true,
-		"rootDir": "src"
 	},
 	"exclude": [
 		"node_modules",
-		".vscode-test"
-	]
+		".vscode-test",
+    "src/__tests__"
+	],
+  "include": [
+    "src"
+  ]
 }
