@@ -44,7 +44,6 @@
     ]
   },
   "scripts": {
-    "vscode:prepublish": "npm run build",
     "lint": "eslint . --ext .ts,.tsx",
     "build": "webpack --mode production",
     "build:dev": "webpack --mode development",
