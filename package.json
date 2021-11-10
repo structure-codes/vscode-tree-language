@@ -2,7 +2,7 @@
   "name": "vscode-tree-extension",
   "displayName": "Tree",
   "description": "Lauguage support for Tree files",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "publisher": "CTC",
   "icon": "images/icon.png",
   "engines": {
@@ -47,7 +47,7 @@
     "lint": "eslint . --ext .ts,.tsx",
     "build": "webpack --mode production",
     "build:dev": "webpack --mode development",
-    "dev": "webpack --watch",            
+    "dev": "webpack --watch",
     "package": "vsce package",
     "test": "jest"
   },
