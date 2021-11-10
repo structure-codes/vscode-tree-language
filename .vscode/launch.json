@@ -22,7 +22,10 @@
       ],
       "smartStep": true,
       "sourceMaps": true,
-      "trace": true
+      "trace": true,
+      "env": {
+        "VSCODE_DEBUG": "true"
+      }
     },
     {
       "name": "Run Tree",
