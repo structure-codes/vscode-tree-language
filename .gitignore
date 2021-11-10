@@ -1,5 +1,5 @@
 *.vsix
 node_modules/
-out/
+dist/
 vscode-tree-extension-*
 *.zip

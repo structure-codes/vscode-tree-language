@@ -6,7 +6,7 @@
 			"ES2019",
 			"dom"
 		],
-		"outDir": "out",
+		"outDir": "dist",
 		"sourceMap": true,
 		"strict": true,
 	},

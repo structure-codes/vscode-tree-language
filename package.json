@@ -8,7 +8,8 @@
   "engines": {
     "vscode": "^1.28.0"
   },
-  "main": "./out/extension.js",
+  "main": "./dist/extension",
+  "browser": "./dist/web/extension.js",
   "activationEvents": [
     "onLanguage:tree",
     "onStartupFinished"
@@ -43,9 +44,10 @@
     ]
   },
   "scripts": {
-    "lint": "eslint ./src --ext .ts,.tsx",
-    "build": "tsc",
-    "dev": "tsc -watch -p ./",
+    "lint": "eslint . --ext .ts,.tsx",
+    "build": "webpack --mode production",
+    "build:dev": "webpack --mode development",
+    "dev": "webpack --watch",            
     "package": "vsce package",
     "test": "jest"
   },
@@ -57,11 +59,16 @@
     "@typescript-eslint/eslint-plugin": "^5.2.0",
     "@typescript-eslint/parser": "^5.2.0",
     "eslint": "^8.1.0",
+    "path-browserify": "^1.0.1",
+    "process": "^0.11.10",
+    "ts-loader": "^9.2.6",
     "jest": "^27.3.1",
     "ts-jest": "^27.0.7",
     "ts-node": "^10.4.0",
     "typescript": "^4.4.4",
-    "vsce": "^1.95.1"
+    "vsce": "^1.95.1",
+    "webpack": "^5.62.1",
+    "webpack-cli": "^4.9.1"
   },
   "dependencies": {
     "nanoid": "^3.1.30"
