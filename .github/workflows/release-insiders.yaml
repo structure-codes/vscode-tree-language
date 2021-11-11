@@ -1,4 +1,4 @@
-name: Insiders Deploy
+name: Deploy Insiders
 
 on:
   workflow_dispatch:
