@@ -7,10 +7,9 @@ let json = require("../package.json");
 
 const year = date.getFullYear();
 const month = date.getMonth() + 1;
-const day = date.getDate();
 
 const timestamp = Math.floor(Date.now() / 1000);
-const version = `${year}.${month}.${day}-${timestamp}`;
+const version = `${year}.${month}.${timestamp}`;
 
 json = JSON.stringify({
   ...json,
