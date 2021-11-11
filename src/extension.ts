@@ -2,13 +2,11 @@ import * as vscode from "vscode";
 import * as path from "path";
 
 import FoldingProvider from "./providers/foldingProvider";
-import { provideDocumentFormattingEdits} from "./providers/formattingEditProvidor";
+import { provideDocumentFormattingEdits} from "./providers/formattingEditProvider";
 import { provideCompletionItems } from "./providers/completionItemsProvider";
+import { textDocumentChangeProvider } from "./providers/textDocumentChangeProvider";
 
 const { VSCODE_DEBUG = false } = process.env;
-
-// TODO: where can we call this to set the tree language after inspecting the document?
-// vscode.languages.setTextDocumentLanguage(document, "tree");
 
 // when the extension is activated
 export async function activate(context: vscode.ExtensionContext) {
@@ -30,6 +28,8 @@ export async function activate(context: vscode.ExtensionContext) {
     "|"
   );
   context.subscriptions.push(compltionProivder);
+
+  vscode.workspace.onDidChangeTextDocument(textDocumentChangeProvider);
 
   // Open example.tree in a new window when running locally for debugging
   if (VSCODE_DEBUG) {
