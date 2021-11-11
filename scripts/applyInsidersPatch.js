@@ -8,10 +8,9 @@ let json = require("../package.json");
 const year = date.getFullYear();
 const month = date.getMonth() + 1;
 const day = date.getDate();
-const hour = date.getHours();
 
-const jobId = process.env.GITHUB_JOB;
-const version = `${year}.${month}.${day}${hour}-${jobId}`;
+const timestamp = Math.floor(Date.now() / 1000);
+const version = `${year}.${month}.${day}-${timestamp}`;
 
 json = JSON.stringify({
   ...json,
