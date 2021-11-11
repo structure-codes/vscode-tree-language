@@ -20,7 +20,7 @@
     "keywords": {
       "patterns": [
         {
-          "match": "(?<=├──|└──)[\\s\\w]+",          
+          "match": "(?<=├──|└──)[^\/]+",          
           "name": "keyword.filename"
         }       
       ]
