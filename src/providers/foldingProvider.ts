@@ -1,6 +1,6 @@
 import * as vscode from "vscode";
-import { INDEX_NAME, treeStringToJson } from "./tree";
-import { TreeType } from "./types/treeType";
+import { INDEX_NAME, treeStringToJson } from "../tree";
+import { TreeType } from "../types/treeType";
 
 class FoldingProvider implements vscode.FoldingRangeProvider {
   onDidChangeFoldingRanges?: vscode.Event<void> | undefined;
