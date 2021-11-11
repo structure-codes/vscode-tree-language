@@ -1,8 +1,8 @@
 import * as vscode from "vscode";
 import * as path from "path";
 
-import FoldingProvider from "./providers/foldingProvider";
-import { provideDocumentFormattingEdits} from "./providers/formattingEditProvider";
+import { provideFoldingRanges } from "./providers/foldingRangeProvider";
+import { provideDocumentFormattingEdits } from "./providers/formattingEditProvider";
 import { provideCompletionItems } from "./providers/completionItemsProvider";
 import { textDocumentChangeProvider } from "./providers/textDocumentChangeProvider";
 
@@ -10,24 +10,17 @@ const { VSCODE_DEBUG = false } = process.env;
 
 // when the extension is activated
 export async function activate(context: vscode.ExtensionContext) {
-
-  // TODO: just make this function like the rest :)
-  const foldingProvider = new FoldingProvider();
-  const provider = vscode.languages.registerFoldingRangeProvider({ language: "tree" }, foldingProvider);
-  context.subscriptions.push(provider);
-
-  const editProvidor = vscode.languages.registerDocumentFormattingEditProvider(
-    { language: "tree" },
-    { provideDocumentFormattingEdits }
+  context.subscriptions.push(
+    vscode.languages.registerFoldingRangeProvider({ language: "tree" }, { provideFoldingRanges })
   );
-  context.subscriptions.push(editProvidor);
 
-  const compltionProivder = vscode.languages.registerCompletionItemProvider(
-    { language: "tree" },
-    { provideCompletionItems },
-    "|"
+  context.subscriptions.push(
+    vscode.languages.registerDocumentFormattingEditProvider({ language: "tree" }, { provideDocumentFormattingEdits })
   );
-  context.subscriptions.push(compltionProivder);
+
+  context.subscriptions.push(
+    vscode.languages.registerCompletionItemProvider({ language: "tree" }, { provideCompletionItems }, "|")
+  );
 
   vscode.workspace.onDidChangeTextDocument(textDocumentChangeProvider);
 
