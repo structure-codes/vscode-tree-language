@@ -5,7 +5,7 @@
 [![](https://vsmarketplacebadge.apphb.com/rating-short/CTC.vscode-tree-extension.svg)](https://marketplace.visualstudio.com/items?itemName=CTC.vscode-tree-extension)
 
 
-This VSCode Extension adds syntax highlighting support for `.tree` files - This is not a _real_ lanague but this is very helpful for reviewing `tree` command output.
+This VSCode Extension adds syntax highlighting support for `.tree` files - This is not a _real_ language but this is very helpful for reviewing `tree` command output.
 
 ### Features
 - Syntax highlighting 💅
