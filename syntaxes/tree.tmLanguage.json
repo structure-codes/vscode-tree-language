@@ -20,46 +20,24 @@
     "keywords": {
       "patterns": [
         {
-          "begin": "[0-9a-zA-Z]+",
-          "end": "\n",
-          "name": "keyword.file.tree"
-        },
-        {
-          "match": "[0-9a-zA-Z]+/",
-          "name": "variable.folder.tree"
-        }
+          "match": "(?<=├──|└──)[^\/]+",          
+          "name": "keyword.filename"
+        }       
       ]
     },
     "variables": {
       "patterns": [
-        { 
-          "begin": "(.*)├──",
-          "end": " ",
+        {
+          "match": "(├──|│|└──)",          
           "name": "variable.trunk.tree"
-        },
-        {
-          "begin": "(.*)│",
-          "end": " ",
-          "name": "variable.branch.tree"
-        },
-        {
-          "begin": "(.*)└──",
-          "end": " ",
-          "name": "variable.endseg.tree"
-        }
+        }       
       ]
     },
     "comments": {
       "patterns": [
         {
           "name": "comment.line.documentation.tree",
-          "begin": "#",
-          "end": "$"
-        },
-        {
-          "name": "comment.line.documentation.tree",
-          "begin": "//",
-          "end": "$"
+          "match": "\/\/.*"
         }
       ]
     }

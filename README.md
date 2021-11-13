@@ -10,17 +10,14 @@ This VSCode Extension adds syntax highlighting support for `.tree` files - This 
 ### Features
 - Syntax highlighting 💅
 - Folding 🤏
+- [Web extension support](https://code.visualstudio.com/api/extension-guides/web-extensions) 🕸
 
 ### Demo
-![2021-11-01_10-45-11 (1)](https://user-images.githubusercontent.com/996134/139699698-4f1baec9-4ea8-422d-9a22-0a7a1f23f901.gif)
-
-
+<img src="https://user-images.githubusercontent.com/996134/139699698-4f1baec9-4ea8-422d-9a22-0a7a1f23f901.gif" width="420">
 
 ### How do I generate a tree?
 
-The best way for now would be to install the `tree` command on your platform. These differ platform to platform so beware that you might run into issues.
-
-**NOTE: We plan on building our own CLI that will have its own implementation of tree to unifiy the landscape**
+Please use the [@structure-codes/cli](https://github.com/structure-codes/cli) to generate a structure file. Otherwise, you may use the `tree` command of your liking but results may vary.
 
 ```
 ├── functions

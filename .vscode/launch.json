@@ -20,6 +20,7 @@
         "**/node_modules/**",
         "**/resources/app/out/vs/**"
       ],
+      "preLaunchTask": "npm: dev",
       "smartStep": true,
       "sourceMaps": true,
       "trace": true,
