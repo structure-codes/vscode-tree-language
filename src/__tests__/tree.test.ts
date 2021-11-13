@@ -1,4 +1,4 @@
-import { treeStringToJson } from "../tree";
+import { treeStringToJson } from "@structure-codes/utils";
 import * as fs from "fs";
 import * as path from "path";
 
