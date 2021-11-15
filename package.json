@@ -48,7 +48,7 @@
     "build": "webpack --mode production",
     "build:dev": "webpack --mode development",
     "dev": "webpack --watch",
-    "package": "vsce package",
+    "package": "vsce package --yarn",
     "patch-insiders": "node scripts/applyInsidersPatch.js",
     "test": "jest"
   },
