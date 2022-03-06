@@ -72,6 +72,6 @@
     "webpack-cli": "^4.9.1"
   },
   "dependencies": {
-    "@structure-codes/utils": "latest"
+    "@structure-codes/utils": "^0.0.2"
   }
 }
