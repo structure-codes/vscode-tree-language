@@ -2,7 +2,7 @@
   "name": "vscode-tree-extension",
   "displayName": "Tree",
   "description": "Language support for Tree files",
-  "version": "0.0.11",
+  "version": "0.0.12",
   "publisher": "CTC",
   "icon": "images/icon.png",
   "engines": {
@@ -48,7 +48,7 @@
     "build": "webpack --mode production",
     "build:dev": "webpack --mode development",
     "dev": "webpack --watch",
-    "package": "vsce package",
+    "package": "vsce package --yarn",
     "patch-insiders": "node scripts/applyInsidersPatch.js",
     "test": "jest"
   },
@@ -67,9 +67,11 @@
     "ts-loader": "^9.2.6",
     "ts-node": "^10.4.0",
     "typescript": "^4.4.4",
-    "vsce": "^1.95.1",
+    "vsce": "^2.3.0",
     "webpack": "^5.62.1",
     "webpack-cli": "^4.9.1"
   },
-  "dependencies": {}
+  "dependencies": {
+    "@structure-codes/utils": "^0.0.2"
+  }
 }

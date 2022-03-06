@@ -22,22 +22,22 @@ Please use the [@structure-codes/cli](https://github.com/structure-codes/cli) to
 ```
 ├── functions
 ├── src
-│	├── articles
-│	├── components
-│	│	├── builder
-│	│	│	├── center
-│	│	│	├── left
-│	│	│	│	└── sections
-│	│	│	├── lists
-│	│	│	└── right
-│	│	│		└── sections
-│	│	├── dashboard
-│	│	├── landing
-│	│	├── router
-│	│	└── shared
-│	└── constants
+│  ├── articles
+│  ├── components
+│  │  ├── builder
+│  │  │  ├── center
+│  │  │  ├── left
+│  │  │  │  └── sections
+│  │  │  ├── lists
+│  │  │  └── right
+│  │  │    └── sections
+│  │  ├── dashboard
+│  │  ├── landing
+│  │  ├── router
+│  │  └── shared
+│  └── constants
 └── static
-	└── images
-		├── screenshots
-		└── templates
+  └── images
+    ├── screenshots
+    └── templates
 ```
